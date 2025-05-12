@@ -1,0 +1,60 @@
+@import url("https://fonts.cdnfonts.com/css/general-sans");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  width: 100dvw;
+  overflow-x: hidden;
+  /* background-color: #; */
+  font-family: "General Sans", sans-serif;
+}
+
+@layer utilities {
+  .nav-hover-btn {
+    @apply relative ms-10 font-general text-xs uppercase text-blue-50 
+           after:absolute after:-bottom-0.5 after:left-0 
+           after:h-[2px] after:w-full after:origin-bottom-right 
+           after:scale-x-0 after:bg-neutral-800 
+           after:transition-transform after:duration-300 
+           after:ease-[cubic-bezier(0.65_0.05_0.36_1)] 
+           hover:after:origin-bottom-left hover:after:scale-x-100 
+           dark:after:bg-white cursor-pointer;
+  }
+
+  .blur-bg {
+    @apply absolute w-full h-full;
+    backdrop-filter: blur(8px); /* Creates the blur effect */
+    background: rgba(255, 255, 255, 0.1); /* Slight base tint */
+    overflow: hidden;
+  }
+
+  .blur-bg::before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 300%;
+    border-radius: 50px;
+    background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(45deg);
+    /* animation: glassFlash 3s infinite linear; */
+    opacity: 0.7;
+  }
+
+  @keyframes glassFlash {
+    0% {
+      left: -100%;
+      top: -100%;
+    }
+    100% {
+      left: 100%;
+      top: 100%;
+    }
+  }
+}
