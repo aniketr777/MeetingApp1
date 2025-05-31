@@ -4,7 +4,7 @@ import Hero from "../components/Hero"
 import PricingPage from "../Pages/PricingPage";
 import About from "./About"
 import Footer from "../components/Footer"
-import MeetingPage from "../Pages/MeetingPage"
+// import MeetingPage from "../Pages/MeetingPage"
 function Home() {
   return (
     <>
@@ -13,7 +13,6 @@ function Home() {
         <Hero></Hero>
         <About></About>
         <PricingPage></PricingPage>
-        <MeetingPage></MeetingPage>
         <Footer></Footer>
 
       </div>
