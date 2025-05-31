@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -128,8 +128,8 @@ useEffect(() => {
 
 
   return (
-    <div className="relative min-h-[100dvh] w-full bg-black overflow-x-hidden">
-      <Navbar />
+    <div className="relative min-h-[110dvh] w-full bg-black overflow-x-hidden">
+      {/* <Navbar /> */}
       <div className="flex relative flex-col gap-6 justify-normal items-center text-white pt-6 md:pt-10 px-4 sm:px-6 lg:px-8">
         <h1  id="pricing" className="text-3xl sm:text-4xl font-thin">Pricing</h1>
         <p className="text-zinc-400 text-center text-base sm:text-lg max-w-2xl">

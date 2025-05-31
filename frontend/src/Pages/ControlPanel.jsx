@@ -1,31 +1,44 @@
 import React, { useState } from "react";
 
-function ControlPanel() {
-  const [mic, setMic] = useState(false);
-  const [video, setVideo] = useState(false);
-  const [openChat, setOpenChat] = useState(false);
-  const [leave, setLeave] = useState(false);
+export default function ControlPanel({ videoRef }) {
+  const [micOn, setMicOn] = useState(true);
+  const [videoOn, setVideoOn] = useState(true);
+
+  const toggleMic = () => {
+    setMicOn((prev) => !prev);
+    // add real media control logic
+  };
+
+  const toggleVideo = () => {
+    setVideoOn((prev) => !prev);
+    if (videoRef.current) {
+      const tracks = videoRef.current.srcObject?.getVideoTracks();
+      if (tracks?.[0]) tracks[0].enabled = !videoOn;
+    }
+  };
+
+  const handleScreenShare = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getDisplayMedia({
+        video: true,
+      });
+      videoRef.current.srcObject = stream;
+    } catch (err) {
+      console.error("Screen share failed:", err);
+    }
+  };
 
   return (
-    <>
-      <div className="absolute flex justify-between items-center left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80%] h-[20%] bg-black rounded-lg p-4">
-        {/* Box 1: Center */}
-        <div className="flex justify-center items-center gap-10 w-[60%]">
-          <div className="flex-1 text-center text-white">Mic</div>
-          <div className="flex-1 text-center text-white">Video</div>
-          <div className="flex-1 text-center text-white">Chat</div>
-          <div className="flex-1 text-center text-white">Leave</div>
-        </div>
-
-        {/* Box 2: Right */}
-        <div className="flex justify-center items-end gap-4 w-[30%] text-white">
-          <div>Participants</div>
-          <div>Chats</div>
-          <div>Menu</div>
-        </div>
-      </div>
-    </>
+    <div className="flex gap-2">
+      <button onClick={toggleMic} className="bg-gray-300 p-2 rounded">
+        {micOn ? "Mic On" : "Mic Off"}
+      </button>
+      <button onClick={toggleVideo} className="bg-gray-300 p-2 rounded">
+        {videoOn ? "Camera On" : "Camera Off"}
+      </button>
+      <button onClick={handleScreenShare} className="bg-gray-300 p-2 rounded">
+        Share Screen
+      </button>
+    </div>
   );
 }
-
-export default ControlPanel;

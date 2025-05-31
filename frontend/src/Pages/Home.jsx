@@ -13,9 +13,7 @@ function Home() {
         <Hero></Hero>
         <About></About>
         <PricingPage></PricingPage>
-        <MeetingPage></MeetingPage>
         <Footer></Footer>
-
       </div>
     </>
   );

@@ -1,25 +1,30 @@
-import React, { useState } from "react";
+import  { use, useState } from "react";
+import { Link } from "react-router-dom";
+import Login from "./Login"
+import { useNavigate } from "react-router-dom";
 
-function SignIn() {
-  const [credentials, setCredentials] = useState({
+function SignUp() {
+  const [userData, setUserData] = useState({
+    username: "",
     email: "",
     password: "",
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setCredentials((prevData) => ({
+    setUserData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
-
+  const navigate = useNavigate();
   const handleSubmit = () => {
-    console.log("User Credentials:", credentials);
+    navigate("/")
+    console.log("User Data:", userData);
   };
 
   return (
-    <div className="flex flex-col lg:flex-row h-screen">
+    <div className="flex flex-col lg:flex-row min-h-screen">
       {/* Left Section */}
       <div className="bg-black w-full lg:w-1/2 flex flex-col px-6 py-4 relative">
         <div className="absolute top-4 left-6 text-lg font-thin border border-white rounded-3xl px-4 py-2 text-gray-100">
@@ -28,18 +33,28 @@ function SignIn() {
         <div className="flex flex-col justify-center items-center flex-grow">
           <div className="w-full md:w-3/4 lg:w-[60%] py-4">
             <div className="text-3xl font-semibold text-gray-100 mb-2 text-center">
-              Welcome Back
+              Create an account
             </div>
             <div className="text-lg text-gray-100 mb-6 text-center">
-              Sign in to continue your journey
+              Sign up and get 30 days free trial
             </div>
             <form className="w-full space-y-4 px-4">
+              <div>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Full name"
+                  value={userData.username}
+                  onChange={handleInputChange}
+                  className="w-full p-3 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 shadow-sm"
+                />
+              </div>
               <div>
                 <input
                   type="email"
                   name="email"
                   placeholder="Email"
-                  value={credentials.email}
+                  value={userData.email}
                   onChange={handleInputChange}
                   className="w-full p-3 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 shadow-sm"
                 />
@@ -49,7 +64,7 @@ function SignIn() {
                   type="password"
                   name="password"
                   placeholder="Password"
-                  value={credentials.password}
+                  value={userData.password}
                   onChange={handleInputChange}
                   className="w-full p-3 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-500 shadow-sm"
                 />
@@ -59,41 +74,24 @@ function SignIn() {
                 onClick={handleSubmit}
                 className="w-full bg-yellow-500 text-white text-lg p-3 rounded-lg hover:bg-yellow-600 transition duration-300"
               >
-                Sign In
+                Submit
               </button>
             </form>
-            <div className="mt-4 text-gray-100 text-center">
-              Forgot your password?{" "}
-              <span className="text-yellow-600 underline cursor-pointer">
-                Reset it
-              </span>
+            <div className="flex justify-between items-center mt-6 px-4">
+              <button className="flex-1 bg-black text-white p-3 rounded-lg hover:bg-gray-700 transition duration-300 mx-1 border border-white">
+                Apple
+              </button>
+              <button className="flex-1 bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-300 mx-1">
+                Google
+              </button>
             </div>
-          </div>
-          {/* Sign In with Google/Apple */}
-          <div className="w-full md:w-3/4 lg:w-[60%] mt-6 flex flex-col space-y-4 px-4">
-            <button className="flex items-center justify-center bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition duration-300 shadow-md">
-              <img
-                src="/public/img/google-icon.png"
-                alt="Google"
-                className="w-5 h-5 mr-2"
-              />
-              Sign in with Google
-            </button>
-            <button className="flex items-center justify-center bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition duration-300 shadow-md">
-              <img
-                src="/public/img/apple-icon.png"
-                alt="Apple"
-                className="w-5 h-5 mr-2"
-              />
-              Sign in with Apple
-            </button>
           </div>
           <div className="mt-10 w-full md:w-3/4 lg:w-[60%] flex justify-between items-center absolute bottom-4">
             <div className="text-gray-100">
-              New here?{" "}
-              <span className="text-yellow-600 underline cursor-pointer">
-                Create an account
-              </span>
+              Already have an account?{" "}
+              <Link to="/Login"  className="text-yellow-600 underline cursor-pointer">
+                Login
+              </Link >
             </div>
             <div className="text-gray-100">
               <span className="underline cursor-pointer">
@@ -107,22 +105,22 @@ function SignIn() {
       {/* Right Section */}
       <div
         className="w-full lg:w-1/2 bg-cover bg-center hidden lg:flex relative"
-        style={{ backgroundImage: `url('img/signin-bg.png')` }}
+        style={{ backgroundImage: `url('/public/img/log.png')` }}
       >
-        <div className="absolute top-4 right-4 bg-yellow-500 text-black rounded-full p-2 cursor-pointer">
+        {/* <div className="absolute top-4 right-4 bg-yellow-500 text-black rounded-full px-4 p-2 cursor-pointer">
           ✕
-        </div>
+        </div> */}
         <div className="absolute top-16 left-6 bg-white p-4 rounded-lg shadow-lg">
-          <div className="text-sm text-gray-500">Upcoming Event</div>
+          <div className="text-sm text-gray-500">Task Review With Team</div>
           <div className="text-lg text-gray-800 font-semibold">
-            10:00am-11:00am
+            09:30am-10:00am
           </div>
         </div>
         <div className="absolute bottom-16 left-6 bg-white p-4 rounded-lg shadow-lg">
           <div className="text-lg text-gray-800 font-semibold">
-            Team Briefing
+            Daily Meeting
           </div>
-          <div className="text-sm text-gray-500">03:00pm-04:00pm</div>
+          <div className="text-sm text-gray-500">12:00pm-01:00pm</div>
           <div className="flex mt-2">
             <div className="w-8 h-8 rounded-full bg-gray-300 border border-white -ml-2"></div>
             <div className="w-8 h-8 rounded-full bg-gray-300 border border-white -ml-2"></div>
@@ -134,4 +132,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default SignUp;
