@@ -1,10 +1,11 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero"
-import PricingPage from "../Pages/PricingPage";
+import PricingPage from "./PricingPage";
 import About from "./About"
 import Footer from "../components/Footer"
-import MeetingPage from "../Pages/MeetingPage"
+import JoinMeeting from "./JoinMeeting";
+// import MeetingPage from "../Pages/MeetingPage"
 function Home() {
   return (
     <>
@@ -13,6 +14,7 @@ function Home() {
         <Hero></Hero>
         <About></About>
         <PricingPage></PricingPage>
+        {/* <JoinMeeting></JoinMeeting> */}
         <Footer></Footer>
       </div>
     </>
