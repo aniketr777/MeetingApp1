@@ -4,6 +4,7 @@ import Home from "./Pages/Home";
 // import PricingPage from "./Pages/PricingPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./Pages/SignUp";
+import JoinMeeting from "./Pages/JoinMeet";
 // import MeetingPage from "./Pages/MeetingPage";
 // import JoinPage from "./Pages/JoinPage";/
 // import MeetingLinkPage from "./Pages/MeetingLinkPage";
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/JoinMeeting" element={<JoinMeeting/>}></Route>
         {/* <Route path="/join" element={<JoinPage />} /> */}
         {/* <Route path="/meeting/:roomId" element={<MeetingPage />} /> */}
         {/* <Route path="/meeting-link/:roomId" element={<MeetingLinkPage />} />/ */}

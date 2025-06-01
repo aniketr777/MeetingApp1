@@ -96,6 +96,12 @@ const Navbar = () => {
                   Login
                 </button>
                 <button
+                  className="text-black bg-[#ffd52c] rounded-md hover:bg-[#d4bb59] hover:text-black px-4 py-2 ml-4"
+                  onClick={() => navigate("/joinMeeting")}
+                >
+                  join
+                </button>
+                <button
                   className="text-black bg-white rounded-md hover:bg-black hover:text-white px-4 py-2 ml-2"
                   onClick={() => navigate("/SignUp")}
                 >
